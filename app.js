@@ -5,6 +5,7 @@ const cors=require('cors');
 const passport=require('passport');
 const mongoose=require('mongoose');
 const config=require('./config/database');
+//const session = require('express-session');
 
 mongoose.connect(config.database);
 
@@ -30,9 +31,19 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.json()); 
 
 app.use(passport.initialize());
-app.use(passport.session()); 
-var session = require('express-session');
-app.use(session({ secret: 'SECRET' }));
+//app.use(passport.session()); 
+
+//app.use(session({ secret: 'yoursecret' }));
+//const oneDay = 1000 * 60 * 60 * 24;
+
+//session middleware
+/*app.use(session({
+    secret: "yoursecret",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));*/
+
 
 require('./config/passport')(passport);
  
